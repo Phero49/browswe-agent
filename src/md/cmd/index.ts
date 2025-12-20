@@ -1,0 +1,2 @@
+import { runCommand } from "./commandsRegister";
+

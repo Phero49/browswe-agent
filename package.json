@@ -1,0 +1,19 @@
+{
+  "name": "browswe-agent",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/ws": "^8.18.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "scripts": {
+    "dev": "bun  --watch ./index.ts"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}

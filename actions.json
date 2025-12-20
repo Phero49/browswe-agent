@@ -1,0 +1,1851 @@
+[
+  {
+    "id": "d6811c89-1dbf-4aab-a1a1-2eb7ea5a6e6d",
+    "tag": "a",
+    "href": "/",
+    "disabled": false
+  },
+  {
+    "id": "3c0273f9-0cc8-4937-8012-3ce06d5353a6",
+    "label": "Search Jobs",
+    "tag": "a",
+    "href": "/jobs",
+    "disabled": false
+  },
+  {
+    "id": "864f3555-6d89-416a-9340-9ba6ac0456d8",
+    "label": "Company List",
+    "tag": "a",
+    "href": "/companies",
+    "disabled": false
+  },
+  {
+    "id": "069868dc-3b21-49fb-924d-8508a10c0c5e",
+    "label": "Blog",
+    "tag": "a",
+    "href": "/blog",
+    "disabled": false
+  },
+  {
+    "id": "bd62753d-d520-40ab-bb2b-9990a1a62552",
+    "label": "Found a Job? 🎊",
+    "tag": "a",
+    "href": "https://docs.google.com/forms/d/e/1FAIpQLSezabYTfQgSOwr4DBWxi5iUirHiIcnmzDRBQMJyGPXc7DABfA/viewform?usp=header",
+    "disabled": false
+  },
+  {
+    "id": "9a97b6ce-b449-4a39-9783-7bc80bbb73b2",
+    "label": "Get Job Alerts",
+    "tag": "a",
+    "href": "/newsletter",
+    "disabled": false
+  },
+  {
+    "id": "f493bbc9-de39-450c-b201-bc3439361105",
+    "label": "For Employers",
+    "tag": "a",
+    "href": "/hire?fLang=jp",
+    "disabled": false
+  },
+  {
+    "id": "4454e330-4465-49c8-952f-c5fe45b36b37",
+    "label": "日本語",
+    "tag": "a",
+    "href": "/?lang=jp",
+    "disabled": false
+  },
+  {
+    "id": "c4c13036-a921-45ab-ad0a-04d11b957def",
+    "label": "Get weekly email job alerts",
+    "tag": "input",
+    "disabled": false
+  },
+  {
+    "id": "394fa2bc-9cfb-4a37-8f48-1bb7159f4ae1",
+    "label": "Sign Up ➜",
+    "tag": "input",
+    "type": "submit",
+    "disabled": false
+  },
+  {
+    "id": "ba4691af-dd09-4767-96a5-3947b92ace59",
+    "label": "🇯🇵 No Japanese Required",
+    "tag": "a",
+    "href": "/jobs-in-japan-for-english-speakers",
+    "disabled": false
+  },
+  {
+    "id": "f810c4dd-ce5d-46d1-957b-2157859537ee",
+    "label": "🌎 Apply from Overseas",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "3237b444-652e-450e-afe1-301f4f098001",
+    "label": "🏠 Remote Jobs",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "a1697013-a0a9-4524-9f2a-97e2e190314f",
+    "label": "🔍 All Jobs",
+    "tag": "a",
+    "href": "/jobs",
+    "disabled": false
+  },
+  {
+    "id": "d1a85873-d10e-4199-9362-681c45195626",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/money-forward/money-forward-qadegital-banktokyo-bowp7i",
+    "disabled": false
+  },
+  {
+    "id": "5ecfee07-5b2f-4bb7-ac51-62b1beecdda4",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/money-forward",
+    "disabled": false
+  },
+  {
+    "id": "0608cbb1-0f3b-4ada-8709-5c0cf9c0ad59",
+    "label": "Money Forward",
+    "tag": "a",
+    "href": "/companies/money-forward",
+    "disabled": false
+  },
+  {
+    "id": "ea8a046b-cd9a-4da5-bafb-1433569257c7",
+    "label": "QA Engineer (Digital Bank)",
+    "tag": "a",
+    "href": "/jobs/money-forward/money-forward-qadegital-banktokyo-bowp7i",
+    "disabled": false
+  },
+  {
+    "id": "8cbdd7a3-88a7-428f-9745-b800111cfc34",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "a9689683-896e-454b-b90f-cde67cb53ea1",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/adventure/adventure-engineering-manager-0pnma6",
+    "disabled": false
+  },
+  {
+    "id": "14d1cb86-e7f4-44aa-90e5-ec93fbde25a0",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/adventure",
+    "disabled": false
+  },
+  {
+    "id": "1f1f87e9-5c4b-4ac8-8f5e-8f22e2282b98",
+    "label": "Adventure",
+    "tag": "a",
+    "href": "/companies/adventure",
+    "disabled": false
+  },
+  {
+    "id": "2978db44-6e9e-4625-a0f6-248157eefff7",
+    "label": "Engineering Manager",
+    "tag": "a",
+    "href": "/jobs/adventure/adventure-engineering-manager-0pnma6",
+    "disabled": false
+  },
+  {
+    "id": "448038d7-a518-4548-bbff-48e59f588454",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "7cb9ffbe-4108-45b6-8775-2494d97a3614",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/dnk/dnk-senior-database-developer-yhwrxn",
+    "disabled": false
+  },
+  {
+    "id": "2b94108a-ef36-4eb9-a9d2-7f91b221451a",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/dnk",
+    "disabled": false
+  },
+  {
+    "id": "395c3f5e-2267-4f35-a06a-30756f26b50b",
+    "label": "DNK",
+    "tag": "a",
+    "href": "/companies/dnk",
+    "disabled": false
+  },
+  {
+    "id": "06f92594-a778-4d5c-b128-e48275154b71",
+    "label": "Senior Database Developer",
+    "tag": "a",
+    "href": "/jobs/dnk/dnk-senior-database-developer-yhwrxn",
+    "disabled": false
+  },
+  {
+    "id": "1588ba9d-64f2-427f-a0b0-cf66d143b4b4",
+    "label": "Security",
+    "tag": "a",
+    "href": "/security-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "241a9e7e-3e80-421f-9938-17ac51284015",
+    "label": "Python",
+    "tag": "a",
+    "href": "/python-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "bb530173-73ae-4f63-9db5-276a7eb9da43",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/ikhor/ikhor-senior-creative-ml-engineer-uem3wi",
+    "disabled": false
+  },
+  {
+    "id": "f7c79f08-2c0a-478a-a210-d786c9d3519f",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/ikhor",
+    "disabled": false
+  },
+  {
+    "id": "2f1e6b79-c7d0-4dc4-8d67-d0bf9fa26cf9",
+    "label": "iKHOR",
+    "tag": "a",
+    "href": "/companies/ikhor",
+    "disabled": false
+  },
+  {
+    "id": "540ad128-51e8-4d3f-bcaf-5646630bd25c",
+    "label": "Senior Creative ML Engineer",
+    "tag": "a",
+    "href": "/jobs/ikhor/ikhor-senior-creative-ml-engineer-uem3wi",
+    "disabled": false
+  },
+  {
+    "id": "36648f5d-79b6-4d9c-b2b1-cd29cc075865",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "f8b04f13-86e0-4124-9dae-5af9e2bca031",
+    "label": "ML",
+    "tag": "a",
+    "href": "/ml-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "1b91d067-e93b-4ed1-b582-2a9a16fe1b80",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/givery/givery--full-stack-engineer--ai-interview-f83ef8",
+    "disabled": false
+  },
+  {
+    "id": "f027a6ea-bcfc-47ef-94f2-acdece52bb20",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/givery",
+    "disabled": false
+  },
+  {
+    "id": "ef9fca34-ee31-4571-a028-b9f40afcedbc",
+    "label": "Givery",
+    "tag": "a",
+    "href": "/companies/givery",
+    "disabled": false
+  },
+  {
+    "id": "17a16d40-4c52-4458-b212-ea2b329b724f",
+    "label": "Full-Stack Engineer (AI Interview)",
+    "tag": "a",
+    "href": "/jobs/givery/givery--full-stack-engineer--ai-interview-f83ef8",
+    "disabled": false
+  },
+  {
+    "id": "2225026d-be76-41a9-b913-ab5787d6f737",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-senior-cloud-security-engineer-0mnh82",
+    "disabled": false
+  },
+  {
+    "id": "989abc7b-fff8-43d9-87aa-e5cf001392db",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "ef09ccc9-91b5-45d3-8b27-d981107f7adc",
+    "label": "ExaWizards",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "c4bdd43c-aa34-414d-85e1-37505aaca090",
+    "label": "Senior Cloud Security Engineer",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-senior-cloud-security-engineer-0mnh82",
+    "disabled": false
+  },
+  {
+    "id": "a26299c4-ea9e-4ff0-a319-8c30d2a21b70",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "a46eb29e-a6f5-4703-8718-62578db650d1",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-exabase-studioaidevops-lead-2mt4vu",
+    "disabled": false
+  },
+  {
+    "id": "82762386-ba95-4258-a601-140afb1e6214",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "a9314e45-4d27-41c5-9df2-37e29c7611b3",
+    "label": "ExaWizards",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "b624658b-ea7f-4e35-9a38-b7aa521bdc9f",
+    "label": "DevOps Lead (exaBase Studio - AI Service Development Platform)",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-exabase-studioaidevops-lead-2mt4vu",
+    "disabled": false
+  },
+  {
+    "id": "199bac30-cc06-4902-b672-01bedaf43d92",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-sales-ai-agentfullstack-engineer-y4hu0x",
+    "disabled": false
+  },
+  {
+    "id": "cdc808f2-1fb1-4d33-a292-7cd16827b157",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "2923ee1a-cae6-4f56-8955-c5e826c93164",
+    "label": "ExaWizards",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "65f5d6f4-e5c3-4349-9de6-08541907d368",
+    "label": "Fullstack engineer (Sales AI Agent Business)",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-sales-ai-agentfullstack-engineer-y4hu0x",
+    "disabled": false
+  },
+  {
+    "id": "6a4cc962-6c99-4e06-8a7c-3983ac1b941c",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-senior-fullstack-engineer-generative-ai-product-team-em9t2k",
+    "disabled": false
+  },
+  {
+    "id": "8a965460-04e0-4b10-a756-3c6ee7cee34b",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "4b8a6afd-b74d-48ed-97b2-a9461cd59191",
+    "label": "ExaWizards",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "8b6eff69-7562-46ea-83f0-efe9713b1f1d",
+    "label": "Senior Fullstack Engineer (Generative AI Product team)",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-senior-fullstack-engineer-generative-ai-product-team-em9t2k",
+    "disabled": false
+  },
+  {
+    "id": "2beb2935-7db7-49ca-8209-f2a7f86b41bc",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-fullstack-engineer-frontend-specialist-new-service-development-division-pwuebx",
+    "disabled": false
+  },
+  {
+    "id": "5a6da9e2-7736-46c9-9b55-c5ea9eaba3ec",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "edf595a4-eccc-4f01-a9ae-82c07fc64506",
+    "label": "ExaWizards",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "b054de8f-577a-48ce-afa1-b7a802822b99",
+    "label": "Fullstack Engineer (Frontend Specialist - Sales AI Agent Business)",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-fullstack-engineer-frontend-specialist-new-service-development-division-pwuebx",
+    "disabled": false
+  },
+  {
+    "id": "5d070af4-aac9-4b31-8669-0b35e4b7b0e9",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-ux-engineer-new-service-development-division-vlt61o",
+    "disabled": false
+  },
+  {
+    "id": "b02f3699-9436-4221-aa42-a20cef4cd1f9",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "964a7e40-0ece-42a2-afd3-75f89c79254e",
+    "label": "ExaWizards",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "448c1f68-8701-48f5-867f-5e905360edbe",
+    "label": "UX Engineer (Sales AI Agent Business)",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-ux-engineer-new-service-development-division-vlt61o",
+    "disabled": false
+  },
+  {
+    "id": "b726551f-3631-401f-b1f9-0eb8230e0cf4",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/money-forward/money-forward-site-reliability-engineer--aggregation-department-tokyojapandev-43ovdn",
+    "disabled": false
+  },
+  {
+    "id": "0337825b-c5d5-4c5d-a264-9ad24a54bde5",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/money-forward",
+    "disabled": false
+  },
+  {
+    "id": "912efb5c-58ea-4e41-90de-6d19d1a9e83d",
+    "label": "Money Forward",
+    "tag": "a",
+    "href": "/companies/money-forward",
+    "disabled": false
+  },
+  {
+    "id": "d88be5eb-53ad-4ff8-989d-d4b35d16bac3",
+    "label": "Infrastructure Engineer(SRE-AWS)",
+    "tag": "a",
+    "href": "/jobs/money-forward/money-forward-site-reliability-engineer--aggregation-department-tokyojapandev-43ovdn",
+    "disabled": false
+  },
+  {
+    "id": "ef686824-f985-49d2-b7e7-3abd5764cd86",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "05e9c6bd-cc45-4f82-a903-876bb5c1bf0c",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "228ecd1f-3c4a-4813-884b-96a850850cde",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/zeals/zeals-aiml-engineer-conversational-ai-iyp5rx",
+    "disabled": false
+  },
+  {
+    "id": "25c63c4e-6031-4aae-b95d-8f26ba3d2fc6",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/zeals",
+    "disabled": false
+  },
+  {
+    "id": "9ac9ca52-803b-4fe0-969e-81b27eb66f43",
+    "label": "Zeals",
+    "tag": "a",
+    "href": "/companies/zeals",
+    "disabled": false
+  },
+  {
+    "id": "8092f171-bce1-4ea6-a90e-1bc049ff5dfb",
+    "label": "AI/ML Engineer (Conversational AI)",
+    "tag": "a",
+    "href": "/jobs/zeals/zeals-aiml-engineer-conversational-ai-iyp5rx",
+    "disabled": false
+  },
+  {
+    "id": "9faa0110-5252-4f65-8d30-b14679e07a34",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "e6e31f48-5a90-4053-8f85-50864817deee",
+    "label": "Full Remote",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "d5f4b20d-e395-47ed-b8af-bf184ceabd03",
+    "label": "ML",
+    "tag": "a",
+    "href": "/ml-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "af1ef704-1424-4624-bd04-99267c510c90",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/paypay/paypay-product-security-engineer-infrastructure-esmz9y",
+    "disabled": false
+  },
+  {
+    "id": "cd389aef-e652-48ad-b604-f7c169d6c6a4",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/paypay",
+    "disabled": false
+  },
+  {
+    "id": "e6d8e330-a1c6-4054-9291-6372e39c60d7",
+    "label": "PayPay",
+    "tag": "a",
+    "href": "/companies/paypay",
+    "disabled": false
+  },
+  {
+    "id": "5a50dc88-9d0f-4dfc-bc84-382bf7c48a71",
+    "label": "Product Security Engineer (Infrastructure)",
+    "tag": "a",
+    "href": "/jobs/paypay/paypay-product-security-engineer-infrastructure-esmz9y",
+    "disabled": false
+  },
+  {
+    "id": "c6406a76-9941-49ef-91b8-9a09a1e614a0",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "6a1b5aa5-136a-4936-aab3-2e67f47f2351",
+    "label": "Full Remote",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "0f32f4ae-8bc6-438e-a772-210cca0106fd",
+    "label": "Security",
+    "tag": "a",
+    "href": "/security-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "85ab6c19-1ef1-4266-82ac-53e145262bda",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/recursive/recursive-software-engineer-4ri2ro",
+    "disabled": false
+  },
+  {
+    "id": "e3c4d118-e2df-4f0e-8ce2-5827e8873eaf",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/recursive",
+    "disabled": false
+  },
+  {
+    "id": "5ce6178f-b195-42d9-a7bd-3bc80daa806f",
+    "label": "Recursive",
+    "tag": "a",
+    "href": "/companies/recursive",
+    "disabled": false
+  },
+  {
+    "id": "eb86a84b-2649-4cbd-8ceb-ba97024e63bf",
+    "label": "Software Engineer",
+    "tag": "a",
+    "href": "/jobs/recursive/recursive-software-engineer-4ri2ro",
+    "disabled": false
+  },
+  {
+    "id": "eaddbea4-0c47-4451-85bf-98475a010290",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "0e494ab2-141d-41e4-8ad7-7c2aa0b3cb12",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "f147d72d-997b-4a6a-9c6d-6826c3d87781",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/givery/givery--hr-tech-qa-engineer-uco5fq",
+    "disabled": false
+  },
+  {
+    "id": "8a357fcb-84a6-4a33-8780-9bd4c950f73f",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/givery",
+    "disabled": false
+  },
+  {
+    "id": "764a3c0e-5359-4c1e-ab1e-2c628a160a41",
+    "label": "Givery",
+    "tag": "a",
+    "href": "/companies/givery",
+    "disabled": false
+  },
+  {
+    "id": "5541e8e5-d3dd-470d-a5ba-b13de4c73d2c",
+    "label": "QA Engineer (HR Tech)",
+    "tag": "a",
+    "href": "/jobs/givery/givery--hr-tech-qa-engineer-uco5fq",
+    "disabled": false
+  },
+  {
+    "id": "e05dc97d-3546-4bc8-a9d5-f3dae3e6b0f8",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "13e126c9-4282-4ec6-a791-2d32ace1204b",
+    "label": "Full Remote",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "564e2879-9e2a-421e-8e16-f9773c0ed9ab",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/treasure-data/treasure-data-senior-software-engineer-platform-api---ruby-on-rails-mdcmwu",
+    "disabled": false
+  },
+  {
+    "id": "5386d24d-639f-44db-9f0b-fdeff06e1206",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/treasure-data",
+    "disabled": false
+  },
+  {
+    "id": "5877cc5d-02ba-47df-a543-28d23fc7ff8c",
+    "label": "Treasure Data",
+    "tag": "a",
+    "href": "/companies/treasure-data",
+    "disabled": false
+  },
+  {
+    "id": "32c43ec5-3ccc-45c0-a46a-f357cde8ebd6",
+    "label": "Senior Software Engineer, Platform API - Ruby on Rails",
+    "tag": "a",
+    "href": "/jobs/treasure-data/treasure-data-senior-software-engineer-platform-api---ruby-on-rails-mdcmwu",
+    "disabled": false
+  },
+  {
+    "id": "69aefccb-4ab2-431e-86c3-19789517cec6",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "9cbba5e9-ce77-4491-afd9-0119552dd0da",
+    "label": "Backend",
+    "tag": "a",
+    "href": "/backend-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "ffcb5e44-4011-45d9-9193-4f997bfd0a39",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/amptalk/amptalk-jr-mid-software-engineer-i9yqcu",
+    "disabled": false
+  },
+  {
+    "id": "61df0561-2d91-4938-a275-db8bd2f01d29",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/amptalk",
+    "disabled": false
+  },
+  {
+    "id": "b0f44dfe-f836-49a2-a652-82293280f664",
+    "label": "amptalk",
+    "tag": "a",
+    "href": "/companies/amptalk",
+    "disabled": false
+  },
+  {
+    "id": "7ea0823e-716d-44c4-8292-a7c929fa30d7",
+    "label": "Jr.-Mid Software Engineer",
+    "tag": "a",
+    "href": "/jobs/amptalk/amptalk-jr-mid-software-engineer-i9yqcu",
+    "disabled": false
+  },
+  {
+    "id": "43fef520-da74-4a94-a2d9-78851aef8904",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "d8f881f9-b6a1-416d-bf15-e477fadf0aab",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/sectionl/section-l-senior-software-engineer-a20qya",
+    "disabled": false
+  },
+  {
+    "id": "a13397b7-b78a-4b69-984d-792871417702",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/sectionl",
+    "disabled": false
+  },
+  {
+    "id": "c0258f50-6611-400b-a1f3-f331c7b0b39a",
+    "label": "Section L",
+    "tag": "a",
+    "href": "/companies/sectionl",
+    "disabled": false
+  },
+  {
+    "id": "e984a9e5-49f8-49b6-bd78-e374ab6bdb5d",
+    "label": "Senior Software Engineer",
+    "tag": "a",
+    "href": "/jobs/sectionl/section-l-senior-software-engineer-a20qya",
+    "disabled": false
+  },
+  {
+    "id": "535de21c-ba85-4b28-a81c-48904690d513",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "ebf003a6-e05b-4d86-858d-99704779a795",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/hennge/hennge-senior-front-end-engineer-react-o12g57",
+    "disabled": false
+  },
+  {
+    "id": "db9c7dc5-a454-4a1a-94ad-7d53c9268556",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/hennge",
+    "disabled": false
+  },
+  {
+    "id": "4f90a3dd-c28b-40ca-8f31-51f6f74832ec",
+    "label": "HENNGE",
+    "tag": "a",
+    "href": "/companies/hennge",
+    "disabled": false
+  },
+  {
+    "id": "132a0f22-b2aa-4179-9556-6d6f709711ce",
+    "label": "Senior Front end Developer (React)",
+    "tag": "a",
+    "href": "/jobs/hennge/hennge-senior-front-end-engineer-react-o12g57",
+    "disabled": false
+  },
+  {
+    "id": "971c7acd-72f8-4113-9aec-a4a1cedb999d",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "0239aaea-575b-4a83-92e7-ae1f4567f819",
+    "label": "Partial Remote",
+    "tag": "a",
+    "href": "/partial-remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "25a8471d-ee7f-453c-a090-091ac9700694",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/caddi/caddi-engineering-manager-id5a0w",
+    "disabled": false
+  },
+  {
+    "id": "963bec6c-b711-4ad3-b457-7c9e3047a612",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/caddi",
+    "disabled": false
+  },
+  {
+    "id": "faf5926a-56a2-4812-b077-02d78829d7fb",
+    "label": "CADDi",
+    "tag": "a",
+    "href": "/companies/caddi",
+    "disabled": false
+  },
+  {
+    "id": "188db97b-1640-4e0c-a6f0-6ca30a675fba",
+    "label": "Engineer Manager, Platform Services (Fluent Japanese & English Requi...",
+    "tag": "a",
+    "href": "/jobs/caddi/caddi-engineering-manager-id5a0w",
+    "disabled": false
+  },
+  {
+    "id": "c68b9871-7ff6-4a14-a48c-dc20ffc18db1",
+    "label": "Apply from Abroad",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "0d331037-088d-43d9-9144-05a334a072eb",
+    "label": "Full Remote",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "ede2cd20-77dc-4ccb-97f1-822d2d8c44f8",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-designer-new-service-development-division-tdx0sj",
+    "disabled": false
+  },
+  {
+    "id": "0d09d62d-37b1-4dd7-adf4-a2fff9aba377",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "24efcc7a-a86e-40a2-9223-21a135053134",
+    "label": "ExaWizards",
+    "tag": "a",
+    "href": "/companies/exawizards",
+    "disabled": false
+  },
+  {
+    "id": "c36a3750-1133-47a5-a3f3-efcb602ee2b8",
+    "label": "Designer (Sales AI Agent Business)",
+    "tag": "a",
+    "href": "/jobs/exawizards/exawizards-designer-new-service-development-division-tdx0sj",
+    "disabled": false
+  },
+  {
+    "id": "701b456c-815b-491b-813a-47a9ddabbd55",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/mantra/mantra-machine-learning-engineer--researcher-rg8vj9",
+    "disabled": false
+  },
+  {
+    "id": "190b604a-63ec-467f-82fb-29f7821d1eb7",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/mantra",
+    "disabled": false
+  },
+  {
+    "id": "72272185-c8d2-4045-bec8-b48d16ebaaeb",
+    "label": "Mantra",
+    "tag": "a",
+    "href": "/companies/mantra",
+    "disabled": false
+  },
+  {
+    "id": "f7ca0a00-a95f-47ca-a87a-27572ff238de",
+    "label": "Machine Learning Engineer / Researcher",
+    "tag": "a",
+    "href": "/jobs/mantra/mantra-machine-learning-engineer--researcher-rg8vj9",
+    "disabled": false
+  },
+  {
+    "id": "0bfb34cd-d449-4177-b7c0-372f9b27ddfe",
+    "label": "job-link",
+    "tag": "a",
+    "href": "/jobs/mantra/mantra-mobile-app-engineer-langaku-ehqyic",
+    "disabled": false
+  },
+  {
+    "id": "47b6bd67-2ee6-47a1-9c26-2245a491d43e",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/mantra",
+    "disabled": false
+  },
+  {
+    "id": "11572cfd-a685-4371-8b06-66b171a13055",
+    "label": "Mantra",
+    "tag": "a",
+    "href": "/companies/mantra",
+    "disabled": false
+  },
+  {
+    "id": "63e7f324-d4c5-4ebc-b2b6-f1e042f7f004",
+    "label": "Mobile App Engineer (Langaku)",
+    "tag": "a",
+    "href": "/jobs/mantra/mantra-mobile-app-engineer-langaku-ehqyic",
+    "disabled": false
+  },
+  {
+    "id": "c45414e7-1329-4fdc-bdd7-63d8e91f0660",
+    "label": "Search 281+ dev jobs ➜",
+    "tag": "a",
+    "href": "/jobs",
+    "disabled": false
+  },
+  {
+    "id": "051b6b1e-fd71-47ba-9c7a-db3e0ce47c19",
+    "label": "🇯🇵 No Japanese Required",
+    "tag": "a",
+    "href": "/jobs-in-japan-for-english-speakers",
+    "disabled": false
+  },
+  {
+    "id": "3dcfb6b4-39ef-4df6-b9d4-d9f073a3e986",
+    "label": "🌎 Apply from Overseas",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "80797f8d-7fbb-4d1f-9b55-833a1477ffb7",
+    "label": "🏠 Remote Jobs",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "47eb4077-499d-4de0-b081-546d7ab42ab2",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/recursive",
+    "disabled": false
+  },
+  {
+    "id": "dd410f2b-ed05-4fb8-bc1a-4edab3929a50",
+    "label": "Recursive",
+    "tag": "a",
+    "href": "/companies/recursive",
+    "disabled": false
+  },
+  {
+    "id": "68dd0253-a770-4197-8cf8-98024c8e247b",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/recursive",
+    "disabled": false
+  },
+  {
+    "id": "4a232de4-2a46-41e0-a5b9-5dab447f637a",
+    "label": "View 1 job",
+    "tag": "a",
+    "href": "/companies/recursive#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "c58a37a5-0ccb-4900-ae30-9f376b6d7527",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/spike-studio",
+    "disabled": false
+  },
+  {
+    "id": "35dcc829-813b-4f24-9317-4e9ce4db187c",
+    "label": "Spike Studio",
+    "tag": "a",
+    "href": "/companies/spike-studio",
+    "disabled": false
+  },
+  {
+    "id": "9231989e-8fcd-4cc9-8727-1c87fc93129e",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/spike-studio",
+    "disabled": false
+  },
+  {
+    "id": "c1f80be4-90c7-4a93-a80e-08a8050a327d",
+    "label": "View 1 job",
+    "tag": "a",
+    "href": "/companies/spike-studio#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "e8a7a639-e2b8-4331-9b13-5738ca5b7973",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/samansa",
+    "disabled": false
+  },
+  {
+    "id": "7eee6dde-88e3-4735-9b92-6216a18c5092",
+    "label": "SAMANSA",
+    "tag": "a",
+    "href": "/companies/samansa",
+    "disabled": false
+  },
+  {
+    "id": "eafc070c-7ce4-4ed4-b15b-19a45997760a",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/samansa",
+    "disabled": false
+  },
+  {
+    "id": "618ec503-9f65-48c8-abad-5917e24aa179",
+    "label": "View 1 job",
+    "tag": "a",
+    "href": "/companies/samansa#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "8ec1b2f3-65cf-43f4-abb1-8c7a77cb5d90",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/pioneer",
+    "disabled": false
+  },
+  {
+    "id": "91717096-71ca-4626-af35-84258213a434",
+    "label": "Pioneer",
+    "tag": "a",
+    "href": "/companies/pioneer",
+    "disabled": false
+  },
+  {
+    "id": "984e35f0-477f-458f-b07c-ad2b9b726d64",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/pioneer",
+    "disabled": false
+  },
+  {
+    "id": "fcdf4b1e-202b-441d-b963-c7de28902a5e",
+    "label": "View 3 jobs",
+    "tag": "a",
+    "href": "/companies/pioneer#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "5a6ad4d1-4c65-41fb-bd11-f84ef095e1d6",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/linq",
+    "disabled": false
+  },
+  {
+    "id": "84bf650c-505f-4e18-aba0-6b6129d6667f",
+    "label": "LinQ",
+    "tag": "a",
+    "href": "/companies/linq",
+    "disabled": false
+  },
+  {
+    "id": "403a5724-57a6-44cf-9f19-6a91fc0df52f",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/linq",
+    "disabled": false
+  },
+  {
+    "id": "1a0d8bed-4cd5-470f-92b4-c0a3437682a7",
+    "label": "View 2 jobs",
+    "tag": "a",
+    "href": "/companies/linq#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "61d22ba8-a675-4c43-9815-be9ed49e758f",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/instalimb",
+    "disabled": false
+  },
+  {
+    "id": "eb1a0c45-01ba-424d-98c9-cc899dbeb559",
+    "label": "Instalimb",
+    "tag": "a",
+    "href": "/companies/instalimb",
+    "disabled": false
+  },
+  {
+    "id": "f3f178f5-c338-4e38-8672-e60a2d96907e",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/instalimb",
+    "disabled": false
+  },
+  {
+    "id": "bb7bc255-05b2-4c0f-8aea-fce3f4dc1d0d",
+    "label": "View 1 job",
+    "tag": "a",
+    "href": "/companies/instalimb#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "96c64405-7cd7-4191-9623-feab15c4a179",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/ikhor",
+    "disabled": false
+  },
+  {
+    "id": "9088d28e-7c2f-448b-9ad2-5dc1c9d39591",
+    "label": "iKHOR",
+    "tag": "a",
+    "href": "/companies/ikhor",
+    "disabled": false
+  },
+  {
+    "id": "ed0ca229-d3b2-40c2-8e97-a038a1c2784c",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/ikhor",
+    "disabled": false
+  },
+  {
+    "id": "434366f9-fb9b-466f-ac4e-a6203e480699",
+    "label": "View 1 job",
+    "tag": "a",
+    "href": "/companies/ikhor#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "7eec2f0a-27a4-46a6-8c0c-4a66dd4572cf",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/alenx",
+    "disabled": false
+  },
+  {
+    "id": "c2bf00ff-a408-4bce-a87c-7273cebe70a9",
+    "label": "Alenx",
+    "tag": "a",
+    "href": "/companies/alenx",
+    "disabled": false
+  },
+  {
+    "id": "13750bd9-03b8-4771-85b4-af7ca665a6d5",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/alenx",
+    "disabled": false
+  },
+  {
+    "id": "d366a1e8-decf-4b73-9067-eacc7a0af312",
+    "label": "View 1 job",
+    "tag": "a",
+    "href": "/companies/alenx#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "6ad3737b-c9a4-4246-85a0-27558e12cc68",
+    "label": "company-link",
+    "tag": "a",
+    "href": "/companies/spacely",
+    "disabled": false
+  },
+  {
+    "id": "a58423eb-b398-47ea-9bcb-77c8055a5a6f",
+    "label": "Spacely",
+    "tag": "a",
+    "href": "/companies/spacely",
+    "disabled": false
+  },
+  {
+    "id": "b09dcd49-83fd-42ec-8f8e-ecda8fdbc786",
+    "label": "company-logo-link",
+    "tag": "a",
+    "href": "/companies/spacely",
+    "disabled": false
+  },
+  {
+    "id": "1cde6b22-3f24-4a6c-a4c8-4ff831026805",
+    "label": "View 2 jobs",
+    "tag": "a",
+    "href": "/companies/spacely#jobs-marker",
+    "disabled": false
+  },
+  {
+    "id": "2f0bd60f-5468-4b05-a659-5d303c645f06",
+    "label": "Search all dev jobs ➜",
+    "tag": "a",
+    "href": "/jobs",
+    "disabled": false
+  },
+  {
+    "id": "c7cace9f-89ea-4e26-b0c6-bee5412e8f76",
+    "label": "🇯🇵 No Japanese Required",
+    "tag": "a",
+    "href": "/jobs-in-japan-for-english-speakers",
+    "disabled": false
+  },
+  {
+    "id": "a0a26f30-974c-457e-bc32-73905d6ee392",
+    "label": "🌎 Apply from Overseas",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "f4339afd-ad98-4c5e-a1d8-3744bdf89540",
+    "label": "🏠 Remote Jobs",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "1718aefa-7567-4d3e-bdb3-3e5fdbd41835",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/moving-to-japan-as-a-software-developer-an-opinionated-faq",
+    "disabled": false
+  },
+  {
+    "id": "20385ce8-fd0f-402a-89be-452143c91fbf",
+    "label": "Moving to Japan as a Software Developer: An Opinionated FAQ",
+    "tag": "a",
+    "href": "/blog/moving-to-japan-as-a-software-developer-an-opinionated-faq",
+    "disabled": false
+  },
+  {
+    "id": "35f16698-240b-45ff-b303-3b1533354b41",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/software-developer-salaries-in-japan-the-ultimate-guide",
+    "disabled": false
+  },
+  {
+    "id": "5239e461-055d-4c5f-a9c1-3aa3742d98b1",
+    "label": "Software Developer Salaries in Japan: The Ultimate Guide [Updated 2025]",
+    "tag": "a",
+    "href": "/blog/software-developer-salaries-in-japan-the-ultimate-guide",
+    "disabled": false
+  },
+  {
+    "id": "de1f877b-3629-4ab6-858b-7ee1916c859d",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/how-to-find-a-job-as-a-software-developer-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "dfc0caa5-33ba-4530-a53e-285b0b5875db",
+    "label": "How to find a job as a software developer in Japan",
+    "tag": "a",
+    "href": "/blog/how-to-find-a-job-as-a-software-developer-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "400a05dd-2526-4790-b4b0-1c69c98ccf7a",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/getting-a-visa-as-an-engineer-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "ffb21381-d1dc-43af-bce9-14948f04e7ae",
+    "label": "How to get a visa as an engineer in Japan",
+    "tag": "a",
+    "href": "/blog/getting-a-visa-as-an-engineer-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "58e3f6fb-0016-45d4-ba15-795602530892",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/developer-english-resume-japan",
+    "disabled": false
+  },
+  {
+    "id": "26d68a21-5717-476f-bae7-7d21dbe16182",
+    "label": "How to write a perfect developer resume in Japan [2025 guide + template]",
+    "tag": "a",
+    "href": "/blog/developer-english-resume-japan",
+    "disabled": false
+  },
+  {
+    "id": "31ff6c14-791f-4d3a-ab16-7eee1b226491",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/best-tech-meetups-in-tokyo",
+    "disabled": false
+  },
+  {
+    "id": "ee79e9cc-7105-474c-8dcb-ccd9675cbd48",
+    "label": "Best Tech Meetups in Tokyo",
+    "tag": "a",
+    "href": "/blog/best-tech-meetups-in-tokyo",
+    "disabled": false
+  },
+  {
+    "id": "4dfae33d-9a0f-4311-afcf-b9d81fed0008",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/tech-communities-in-osaka-and-kyoto",
+    "disabled": false
+  },
+  {
+    "id": "046929f0-cf95-4cf6-af3e-76f0e0473584",
+    "label": "Top tech communities in Kansai to help you supercharge your career",
+    "tag": "a",
+    "href": "/blog/tech-communities-in-osaka-and-kyoto",
+    "disabled": false
+  },
+  {
+    "id": "bed30b3b-7e5f-4de1-8ebd-8778da2ee7ae",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/tech-communities-in-fukuoka",
+    "disabled": false
+  },
+  {
+    "id": "1c14b42c-9f13-403b-8ef7-844e53e29bca",
+    "label": "Popular Fukuoka Tech Meetups and Communities",
+    "tag": "a",
+    "href": "/blog/tech-communities-in-fukuoka",
+    "disabled": false
+  },
+  {
+    "id": "2720d4ca-0872-42f3-b2f9-6f20d90758b2",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/python-in-japan-guide",
+    "disabled": false
+  },
+  {
+    "id": "0e9dee59-7ba7-40a2-89a4-a9ec54f9044c",
+    "label": "Python in Japan - Language Guide",
+    "tag": "a",
+    "href": "/blog/python-in-japan-guide",
+    "disabled": false
+  },
+  {
+    "id": "b5f41935-063c-4575-ba86-58c1b6f12225",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/what_is_the_real_cost_of_living_in_tokyo",
+    "disabled": false
+  },
+  {
+    "id": "31b36d83-7311-48f9-b003-e4d8e155c883",
+    "label": "What Is the Real Cost of Living in Tokyo?",
+    "tag": "a",
+    "href": "/blog/what_is_the_real_cost_of_living_in_tokyo",
+    "disabled": false
+  },
+  {
+    "id": "283e938c-d6d2-47a8-89b5-30ac335454d3",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/finding-apartments-in-japan-for-foreigners",
+    "disabled": false
+  },
+  {
+    "id": "e8fd6f42-06c7-4b0d-b0c3-006b6dfa9332",
+    "label": "Finding apartments in Japan for foreigners",
+    "tag": "a",
+    "href": "/blog/finding-apartments-in-japan-for-foreigners",
+    "disabled": false
+  },
+  {
+    "id": "c6822808-3476-4cd8-920d-04a6e5b0cc9a",
+    "label": "blog-post-link",
+    "tag": "a",
+    "href": "/blog/worldwide-remote-companies-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "36cfc1dc-a666-4927-b2c7-e33bfbbbe86b",
+    "label": "8 Companies in Japan with \"Worldwide Remote OK\" Policies [March 2025]",
+    "tag": "a",
+    "href": "/blog/worldwide-remote-companies-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "4f8d31b3-82be-4ee5-9a50-a32efe8baabc",
+    "label": "View all blog posts ➜",
+    "tag": "a",
+    "href": "/blog",
+    "disabled": false
+  },
+  {
+    "id": "e350fd60-27c3-4d05-9c35-309202b6c60f",
+    "label": "twitter",
+    "tag": "a",
+    "href": "https://twitter.com/_etdev",
+    "disabled": false
+  },
+  {
+    "id": "ff1093a4-0d4d-46e5-8deb-e3725b6bc894",
+    "label": "twitter",
+    "tag": "a",
+    "href": "https://twitter.com/manamidesigns",
+    "disabled": false
+  },
+  {
+    "id": "722f46e7-1c62-4fdc-9578-cf7f9e416a1c",
+    "label": "hand-curated tech jobs",
+    "tag": "a",
+    "href": "/jobs",
+    "disabled": false
+  },
+  {
+    "id": "89df88f1-98d7-4a99-8e76-fac48d44f595",
+    "label": "Check out our blog",
+    "tag": "a",
+    "href": "/blog",
+    "disabled": false
+  },
+  {
+    "id": "82c75edd-76a6-4929-822d-13a66a5078b4",
+    "label": "top tech companies in Japan",
+    "tag": "a",
+    "href": "/companies",
+    "disabled": false
+  },
+  {
+    "id": "ed49b8cd-f32e-43e0-868b-a67ad67c6da4",
+    "label": "Search all dev jobs ➜",
+    "tag": "a",
+    "href": "/jobs",
+    "disabled": false
+  },
+  {
+    "id": "3deffc8a-5a9d-407f-b4ab-212ff7fd047f",
+    "label": "🇯🇵 No Japanese Required",
+    "tag": "a",
+    "href": "/jobs-in-japan-for-english-speakers",
+    "disabled": false
+  },
+  {
+    "id": "ce1ad1b6-c1b9-4d71-9d73-630b96265591",
+    "label": "🌎 Apply from Overseas",
+    "tag": "a",
+    "href": "/japan-jobs-relocation",
+    "disabled": false
+  },
+  {
+    "id": "4f5bd3a9-beea-4367-8be5-e78674820aac",
+    "label": "🏠 Remote Jobs",
+    "tag": "a",
+    "href": "/remote-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "9e9532b5-38c1-46f9-bfab-8474bc22e887",
+    "label": "Employer Login",
+    "tag": "a",
+    "href": "/employer/login",
+    "disabled": false
+  },
+  {
+    "id": "af27e36b-ec37-4dc4-baa6-1a34d8d981a2",
+    "label": "Post a Job",
+    "tag": "a",
+    "href": "/hire",
+    "disabled": false
+  },
+  {
+    "id": "85c9d8ed-be74-456d-b264-92eaf770d7e0",
+    "label": "email us",
+    "tag": "a",
+    "href": "mailto:contact@japan-dev.com",
+    "disabled": false
+  },
+  {
+    "id": "8595427f-d45f-4c55-a1e4-1780ab89b0a7",
+    "label": "Your email address",
+    "tag": "input",
+    "type": "email",
+    "disabled": false
+  },
+  {
+    "id": "686d24c3-b589-4471-988a-dbcd3cf9e1e9",
+    "label": "Sign Up ➜",
+    "tag": "input",
+    "type": "submit",
+    "disabled": false
+  },
+  {
+    "id": "ed492738-6b75-44e5-b71e-ed01580d9111",
+    "tag": "a",
+    "href": "https://twitter.com/jpn_dev",
+    "disabled": false
+  },
+  {
+    "id": "762da30f-d5ac-4aa2-b439-9466e016332f",
+    "tag": "a",
+    "href": "https://www.linkedin.com/company/19142556",
+    "disabled": false
+  },
+  {
+    "id": "13df0eea-1001-427a-bc19-f3a61a9746d8",
+    "tag": "a",
+    "href": "https://www.facebook.com/jpndev",
+    "disabled": false
+  },
+  {
+    "id": "5267e4b0-0cfc-4060-bac1-44bbd774e8cf",
+    "tag": "a",
+    "href": "https://www.youtube.com/@japan-dev",
+    "disabled": false
+  },
+  {
+    "id": "e003f489-a515-46ba-9f8d-ceb061021b61",
+    "label": "Japan Developer Jobs",
+    "tag": "a",
+    "href": "/",
+    "disabled": false
+  },
+  {
+    "id": "edc87081-1ffc-460c-9e6c-5c5af0ef1b9a",
+    "label": "Top Companies",
+    "tag": "a",
+    "href": "/companies",
+    "disabled": false
+  },
+  {
+    "id": "bb6d0165-4a71-4571-9c84-92740f850086",
+    "label": "Search Jobs",
+    "tag": "a",
+    "href": "/jobs",
+    "disabled": false
+  },
+  {
+    "id": "aded883b-b480-43f6-9583-073d7fe9e9b7",
+    "label": "Sign Up Now",
+    "tag": "a",
+    "href": "/newsletter",
+    "disabled": false
+  },
+  {
+    "id": "e3266a12-2812-40b3-90a6-268fd19a79f5",
+    "label": "Designer Experiences",
+    "tag": "a",
+    "href": "/designer-experiences",
+    "disabled": false
+  },
+  {
+    "id": "6334df45-113d-4ba7-9eae-acdfdebf58ed",
+    "label": "Remote companies",
+    "tag": "a",
+    "href": "/remote-experiences",
+    "disabled": false
+  },
+  {
+    "id": "99a76f56-af5b-4560-87d8-5cb530ef24f9",
+    "label": "Employer Login",
+    "tag": "a",
+    "href": "/employer/login",
+    "disabled": false
+  },
+  {
+    "id": "3f121b87-477f-481f-8725-f12242133bc0",
+    "label": "Post Jobs",
+    "tag": "a",
+    "href": "/hire",
+    "disabled": false
+  },
+  {
+    "id": "27710923-3e42-48b0-9059-1b6ef5259bf8",
+    "label": "人事向けブログ",
+    "tag": "a",
+    "href": "/blog-employer",
+    "disabled": false
+  },
+  {
+    "id": "9c6d5cb1-4148-4314-bec5-389be0ce201b",
+    "label": "Email Us",
+    "tag": "a",
+    "href": "mailto:contact@japan-dev.com",
+    "disabled": false
+  },
+  {
+    "id": "10a101ab-d1f8-4a2c-8794-21255699e3c3",
+    "label": "About Us",
+    "tag": "a",
+    "href": "/about",
+    "disabled": false
+  },
+  {
+    "id": "aee7cef6-309b-4448-8576-50e87948a084",
+    "label": "Blog",
+    "tag": "a",
+    "href": "/blog",
+    "disabled": false
+  },
+  {
+    "id": "7d3541a9-5dc0-45d9-aa40-a82f11b8d19c",
+    "label": "Careers",
+    "tag": "a",
+    "href": "https://jpndev.notion.site/Japan-Dev-Job-Opportunities-8d0a0f4e19e24319b4f9242eefce25aa",
+    "disabled": false
+  },
+  {
+    "id": "9a9d27c2-b636-45c4-8d99-db3fff84e370",
+    "label": "Resources",
+    "tag": "a",
+    "href": "/Resources",
+    "disabled": false
+  },
+  {
+    "id": "1f274236-42d2-42b6-8b49-d8423ba53529",
+    "label": "Feedback",
+    "tag": "a",
+    "href": "#0",
+    "disabled": false
+  },
+  {
+    "id": "5bc7d90b-13b5-4432-96cf-505ddcc08aad",
+    "label": "Email Us",
+    "tag": "a",
+    "href": "mailto:contact@japan-dev.com",
+    "disabled": false
+  },
+  {
+    "id": "a7a88adf-b151-4a61-8e8f-45c5d4bbc586",
+    "label": "Python Jobs",
+    "tag": "a",
+    "href": "/python-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "f1aab359-cdf3-43eb-9b47-b59f2290fc65",
+    "label": "Java Jobs",
+    "tag": "a",
+    "href": "/java-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "eb59fa11-831b-4827-9e01-bea0fdf7deb0",
+    "label": "Go Jobs",
+    "tag": "a",
+    "href": "/go-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "374279cb-818c-4940-8aa0-ea9b68d53474",
+    "label": "Backend Jobs",
+    "tag": "a",
+    "href": "/backend-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "c017b92e-12c7-4050-b8c8-0b301f04d173",
+    "label": "Front-end Jobs",
+    "tag": "a",
+    "href": "/front-end-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "fa084df2-28b1-4e0e-a931-e79dfa2a51ba",
+    "label": "iOS Jobs",
+    "tag": "a",
+    "href": "/ios-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "84d422e8-dffe-42ac-9809-bbdf6b19a662",
+    "label": "Android Jobs",
+    "tag": "a",
+    "href": "/android-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "8bd6dc84-94d8-405d-a7b8-d41993c31bca",
+    "label": "React Jobs",
+    "tag": "a",
+    "href": "/react-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "09b8d7d8-ae18-4756-b020-def12285a45f",
+    "label": "Javascript Jobs",
+    "tag": "a",
+    "href": "/javascript-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "3d86c9c5-fce8-4eb3-a2c4-8b6b77069d7c",
+    "label": "C++ Jobs",
+    "tag": "a",
+    "href": "/c++-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "f6b94720-e366-4d9b-95c1-8939e34d1d9b",
+    "label": "Devops Jobs",
+    "tag": "a",
+    "href": "/devops-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "f90cfd3c-2150-47a7-9577-2187f1ed2502",
+    "label": "Ruby Jobs",
+    "tag": "a",
+    "href": "/ruby-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "af554a3b-e046-4ed9-a086-9c079eb96651",
+    "label": "Full-stack Jobs",
+    "tag": "a",
+    "href": "/full-stack-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "cdeb46d4-f31e-40c9-ab0f-8c550d4fa004",
+    "label": "Kotlin Jobs",
+    "tag": "a",
+    "href": "/kotlin-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "ee5a05e2-6033-4163-98d7-a02abc3f0ec4",
+    "label": "Swift Jobs",
+    "tag": "a",
+    "href": "/swift-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "6ca7f752-2a53-42fc-b959-cb38db5cc5ad",
+    "label": "SRE Jobs",
+    "tag": "a",
+    "href": "/sre-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "5d9b0f2d-459e-4a80-af02-6a152122f927",
+    "label": "PHP Jobs",
+    "tag": "a",
+    "href": "/php-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "79f895b6-5442-4ba0-9365-4fc27ab33e23",
+    "label": "Machine Jobs",
+    "tag": "a",
+    "href": "/ml-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "2355ce0f-8c6a-4c92-861d-40a3a20ac707",
+    "label": "QA Jobs",
+    "tag": "a",
+    "href": "/qa-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "df1fe704-8fe1-4570-bea0-63cf4aec4632",
+    "label": "Rust Jobs",
+    "tag": "a",
+    "href": "/rust-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "73635272-0b3b-4438-8611-77919fe8bfe0",
+    "label": "Rails Jobs",
+    "tag": "a",
+    "href": "/rails-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "34f47d3c-5151-43fa-b526-1e3f7d3998a7",
+    "label": "Vue Jobs",
+    "tag": "a",
+    "href": "/vue-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "a5d21540-f1c4-452c-9ac9-614543e28d2f",
+    "label": "Manager Jobs",
+    "tag": "a",
+    "href": "/manager-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "f7a4f2c6-cb24-43a9-b8e9-1bc70732b733",
+    "label": "Design Jobs",
+    "tag": "a",
+    "href": "/design-jobs-in-japan",
+    "disabled": false
+  },
+  {
+    "id": "d46fe69f-73bd-4f59-8769-581961282430",
+    "label": "Privacy Policy",
+    "tag": "a",
+    "href": "/docs/privacy_policy.pdf",
+    "disabled": false
+  }
+]
