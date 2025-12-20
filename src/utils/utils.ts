@@ -63,49 +63,54 @@ export async function processBody(body: ElementHandle<Element>) {
   return actions;
 }
 
-export async function pasteBlobToElement(blob: Blob, element: Element, fileName = "file") {
+export async function pasteBlobToElement(blob: File, element: Element) {
   try {
     if (!element) {
       console.warn("No element provided to dispatch paste to.");
       return;
     }
 
-    // 1. Create a DataTransfer container
+    // Create a DataTransfer object and add the file
     const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(blob);
 
-    /**
-     * 2. Wrap the Blob in a File object.
-     * This is key: most web apps (like file uploaders or document editors) 
-     * look for File objects in the 'items' list during a paste event.
-     */
-    const file = new File([blob], fileName, { type: blob.type });
-    dataTransfer.items.add(file);
-
-    /**
-     * 3. Add text fallback.
-     * If it's a text-based file (like .md or .txt), adding it to the 
-     * string data ensures standard text inputs can also "see" the content.
-     */
-    if (blob.type.startsWith("text/")) {
-      const text = await blob.text();
-      dataTransfer.setData("text/plain", text);
-    }
-
-    // 4. Create and dispatch the event
-    const pasteEvent = new ClipboardEvent("paste", {
+    // Create the drop event
+    const dropEvent = new DragEvent('drop', {
       bubbles: true,
       cancelable: true,
-      clipboardData: dataTransfer,
+      // Set coordinates for the drop (center of element)
+      clientX: element.getBoundingClientRect().left + element.clientWidth / 2,
+      clientY: element.getBoundingClientRect().top + element.clientHeight / 2,
+      dataTransfer: dataTransfer
     });
 
-    element.dispatchEvent(pasteEvent);
-    console.log(`Dispatched paste for ${blob.type} (${blob.size} bytes)`);
+    // Also dispatch dragenter and dragover events first (required for proper drop handling)
+    const dragEnterEvent = new DragEvent('dragenter', {
+      bubbles: true,
+      cancelable: true,
+      clientX: element.getBoundingClientRect().left + element.clientWidth / 2,
+      clientY: element.getBoundingClientRect().top + element.clientHeight / 2,
+      dataTransfer: dataTransfer
+    });
+
+    const dragOverEvent = new DragEvent('dragover', {
+      bubbles: true,
+      cancelable: true,
+      clientX: element.getBoundingClientRect().left + element.clientWidth / 2,
+      clientY: element.getBoundingClientRect().top + element.clientHeight / 2,
+      dataTransfer: dataTransfer
+    });
+
+    // Dispatch the events in the correct sequence
+    element.dispatchEvent(dragEnterEvent);
+    element.dispatchEvent(dragOverEvent);
+    element.dispatchEvent(dropEvent);
+    
+    console.log("Drop event dispatched to element:", element);
   } catch (err) {
-    console.error("General paste failed:", err);
+    console.error("Failed to drop blob:", err);
   }
 }
-
-
 export async function observeChat(element: Element, delay = 1000) {
   await new Promise<void>((resolve, reject) => {
     setTimeout(() => {

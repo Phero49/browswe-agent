@@ -15,7 +15,7 @@ async function capturePageContentImage(page: Page) {
 
 declare global {
   interface Window {
-    pasteBlobToElement: (blob: Blob, el: HTMLElement,fileName:string) => void;
+    pasteBlobToElement: (blob: File, el: HTMLElement|null,fileName:string) => void;
   }
 }
 
@@ -83,9 +83,11 @@ const promptPath = join(__dirname, "../md/prompt.md");
     const blob = new Blob([promptContent], {
       type: "text/markdown",
     });
-    document.querySelector('textarea')?.focus()
+  const file =  new File([blob],'instruction.md',{type:'text/markdown'})
+    const textArea  = document.querySelector('textarea')
+    textArea?.focus()
     // assumes this helper is already injected on the page
-    window.pasteBlobToElement(blob, document.body,'prompt.md');
+    window.pasteBlobToElement(file, textArea,'prompt.md');
   }, prompt);
 
   // wait for upload result
