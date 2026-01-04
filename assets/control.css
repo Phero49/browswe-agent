@@ -98,11 +98,12 @@
     color: #333;
 }
 
-.agent-action-btn:active {
-    transform:  scale(0.95);
+.agent-active-btn  {
       background: #e0e0e0;
     color: #333;
 }
+
+
 
 .agent-action-btn svg {
     width: 20px;
@@ -314,7 +315,7 @@
     font-weight: 500;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    max-width: 280px;
-margin-top: 100px;
+    max-width: 300px;
+margin-top: 150px;
     pointer-events: none;
 }

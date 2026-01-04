@@ -205,3 +205,53 @@ export function openControls(page: Page, index: number) {
     index
   );
 }
+
+
+
+export function toBase64(file: File | Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    // When reading finishes, resolve with base64 string (without the "data:*;base64," prefix)
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result === "string") {
+        // Strip the prefix if you only want the raw base64
+        const base64 = result.split(",")[1];
+        resolve(base64||'');
+      } else {
+        reject(new Error("Unexpected result type from FileReader"));
+      }
+    };
+
+    reader.onerror = (err) => reject(err);
+
+    // Start reading as data URL
+    reader.readAsDataURL(file);
+  });
+}
+
+
+
+
+async function listenToNetWork(page:Page) {
+  const client = await page.target().createCDPSession();
+  await client.send('Network.enable');
+  const SSE_URL  = "https://chat.qwen.ai/api/v2/chat/completions"
+ // Listen for new responses
+  client.on('Network.responseReceived', (params) => {
+    const { response } = params;
+    if (response.mimeType === 'text/event-stream') {
+      console.log('SSE stream detected at:', response.url);
+    }
+  });
+
+   // Listen for incoming SSE chunks
+  client.on('Network.dataReceived', async (params) => {
+    if (params.requestId) {
+    const body = await  client.send('Network.getResponseBody', { requestId: params.requestId })
+    body.body
+  }})
+
+}
+

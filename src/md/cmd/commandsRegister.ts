@@ -7,10 +7,16 @@ class Commands {
 private socketEvents:Record<string,(payload:any,ws:WebSocket,)=>void> = {}
 
 private socket?: WebSocket
+/**
+ * register a middleware to call each time  b4 a command function is called 
 
+ */
+public beforeNext = async ()=>{
+ return true
+}
 public initWebSocket (webSocket:WebSocket){
 this.socket =webSocket
-this.socket.on('message',(rawData)=>{
+this.socket.on('message',async (rawData)=>{
 
     if (this.socket == null) {
 
@@ -20,7 +26,11 @@ this.socket.on('message',(rawData)=>{
     const  {event,data} = JSON.parse(rawData.toString())
     const callback =  this.socketEvents[event]
     if (callback) {
-        callback(data,this.socket)
+    const ok =   await  this.beforeNext()
+    if (ok) {
+                callback(data,this.socket)
+
+    }
     }else{
         this.socket.send(JSON.stringify({event:"error",data:`${event} was not found 404`}))
     }

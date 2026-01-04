@@ -1,11 +1,14 @@
-import { execSync, spawn } from 'child_process';
-import { fsync } from 'fs';
 import { readFile } from 'fs/promises';
-
+import { execSync, spawn } from 'child_process';
+import { existsSync, mkdir, mkdirSync } from 'fs';
+import { readFile } from 'fs/promises';
+import path, { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import os from 'os'
 const PORT = 9222;
-const APP_PATH = "/tmp/chrome-debug-profile"; // Change this to your desired app path
+export const APP_PATH  = path.join(os.homedir(), 'tmp', 'chrome-profile') ; 
 
- async function checkDebugPort() {
+ export async function checkDebugPort() {
   try {
     const response = await fetch(`http://127.0.0.1:${PORT}/json/version`, {
     
@@ -17,8 +20,11 @@ const APP_PATH = "/tmp/chrome-debug-profile"; // Change this to your desired app
 }
 
 
-export async function launchChromeWithProfile() {
 
+export async function launchChromeWithProfile() {
+ if (!existsSync(APP_PATH)) {
+    mkdirSync(APP_PATH,{recursive:true})
+  }
   // Check if port is already in use
   const isPortOpen = await checkDebugPort();
   if (isPortOpen) {
@@ -38,8 +44,11 @@ export async function launchChromeWithProfile() {
     // Ignore errors - no processes to kill
   }
 
+ 
+
   // Launch Chrome with the specified user data directory
   const chromeArgs = [
+
     `--remote-debugging-port=${PORT}`,
     `--user-data-dir=${APP_PATH}`,
     '--no-first-run',
@@ -55,7 +64,8 @@ export async function launchChromeWithProfile() {
   console.log(`📝 Chrome command: google-chrome ${chromeArgs.join(' ')}`);
 
   // Method 1: Using spawn
-  const chromeProcess = spawn('google-chrome', chromeArgs, {
+  const chromeProcess = spawn('google-chrome', 
+    chromeArgs, {
     detached: true,
     stdio: 'ignore'
   });
