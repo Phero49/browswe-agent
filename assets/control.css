@@ -319,3 +319,40 @@
 margin-top: 150px;
     pointer-events: none;
 }
+/* Alternative: Even more minimal */
+.assistant-message {
+  position: relative;
+  max-width: 85%;
+  margin: 12px 24px 12px 0; /* Right margin instead of left */
+  padding: 16px 20px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-out;
+  
+  /* Dark gray theme */
+  background: #2a2a2a;
+  border: 1px solid #404040;
+  color: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Streaming cursor only */
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
