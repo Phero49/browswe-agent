@@ -2,7 +2,8 @@ import { Browser, Page } from "puppeteer-core";
 import { execSync, spawn } from "child_process";
 import type { ElementHandle } from "puppeteer";
 import { readFile } from "fs/promises";
-
+import { json } from "express";
+import type { QwenResponseChunk } from "../../types";
 export async function processBody(body: ElementHandle<Element>) {
   const clickableElements = await body.$$(
     "button, a[href], [role=button], [onclick], input, select, textarea, label"
@@ -75,37 +76,37 @@ export async function pasteBlobToElement(blob: File, element: Element) {
     dataTransfer.items.add(blob);
 
     // Create the drop event
-    const dropEvent = new DragEvent('drop', {
+    const dropEvent = new DragEvent("drop", {
       bubbles: true,
       cancelable: true,
       // Set coordinates for the drop (center of element)
       clientX: element.getBoundingClientRect().left + element.clientWidth / 2,
       clientY: element.getBoundingClientRect().top + element.clientHeight / 2,
-      dataTransfer: dataTransfer
+      dataTransfer: dataTransfer,
     });
 
     // Also dispatch dragenter and dragover events first (required for proper drop handling)
-    const dragEnterEvent = new DragEvent('dragenter', {
+    const dragEnterEvent = new DragEvent("dragenter", {
       bubbles: true,
       cancelable: true,
       clientX: element.getBoundingClientRect().left + element.clientWidth / 2,
       clientY: element.getBoundingClientRect().top + element.clientHeight / 2,
-      dataTransfer: dataTransfer
+      dataTransfer: dataTransfer,
     });
 
-    const dragOverEvent = new DragEvent('dragover', {
+    const dragOverEvent = new DragEvent("dragover", {
       bubbles: true,
       cancelable: true,
       clientX: element.getBoundingClientRect().left + element.clientWidth / 2,
       clientY: element.getBoundingClientRect().top + element.clientHeight / 2,
-      dataTransfer: dataTransfer
+      dataTransfer: dataTransfer,
     });
 
     // Dispatch the events in the correct sequence
     element.dispatchEvent(dragEnterEvent);
     element.dispatchEvent(dragOverEvent);
     element.dispatchEvent(dropEvent);
-    
+
     console.log("Drop event dispatched to element:", element);
   } catch (err) {
     console.error("Failed to drop blob:", err);
@@ -146,48 +147,48 @@ export async function attachControlPanels(
 ): Promise<void> {
   const iframe = `<iframe src="" width="100",height="100" ></iframe>`;
   page.on("framenavigated", (frame) => {
-    const page = frame.page()
+    const page = frame.page();
     if (page) {
-      addControls(page)
+      addControls(page);
     }
-    
-    console.log()
+
+    console.log();
   });
 
-function addControls (page:Page) {
+  function addControls(page: Page) {
     page.$eval(
-    "body",
-    (el, index: number) => {
-      const controls = el.querySelector("#control-panels");
-      if (controls != null) {
-        return
-      }
-      const div = document.createElement("div");
-      div.setAttribute("tab-index", index.toString());
-      div.id = "control-panels";
-      div.style = `
+      "body",
+      (el, index: number) => {
+        const controls = el.querySelector("#control-panels");
+        if (controls != null) {
+          return;
+        }
+        const div = document.createElement("div");
+        div.setAttribute("tab-index", index.toString());
+        div.id = "control-panels";
+        div.style = `
   position: fixed;
   z-index: 99999;
   margin: 20px;padding:20px;
  bottom:4%;right:3%;`;
-      div.style.margin = "20px";
-      const iframe = document.createElement("iframe");
-      iframe.frameBorder = '0px'
-      iframe.style = "height:100px;position:relative;border:0px sold;";
-      iframe.src = `http://localhost:33931/?tab-index=${index}`;
-      iframe.style = "width:50px;height:50px;background:transparent";
+        div.style.margin = "20px";
+        const iframe = document.createElement("iframe");
+        iframe.frameBorder = "0px";
+        iframe.style = "height:100px;position:relative;border:0px sold;";
+        iframe.src = `http://localhost:33931/?tab-index=${index}`;
+        iframe.style = "width:50px;height:50px;background:transparent";
 
-      div.appendChild(iframe);
-      // //const iframe =  new DOMParser().parseFromString( payload,'text/html')
+        div.appendChild(iframe);
+        // //const iframe =  new DOMParser().parseFromString( payload,'text/html')
 
-      el.appendChild(div);
+        el.appendChild(div);
 
-      // div2.outerHTML = payload
-    },
-    index
-  );
-}
-addControls(page)
+        // div2.outerHTML = payload
+      },
+      index
+    );
+  }
+  addControls(page);
 }
 
 export function openControls(page: Page, index: number) {
@@ -206,8 +207,6 @@ export function openControls(page: Page, index: number) {
   );
 }
 
-
-
 export function toBase64(file: File | Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -218,7 +217,7 @@ export function toBase64(file: File | Blob): Promise<string> {
       if (typeof result === "string") {
         // Strip the prefix if you only want the raw base64
         const base64 = result.split(",")[1];
-        resolve(base64||'');
+        resolve(base64 || "");
       } else {
         reject(new Error("Unexpected result type from FileReader"));
       }
@@ -231,27 +230,68 @@ export function toBase64(file: File | Blob): Promise<string> {
   });
 }
 
+export async function listenToNetWork(
+  page: Page,
+  onChunk: (data: string, status: string, responseId: string) => void
+) {
+  page.exposeFunction("onChunkResponse", (data: string) => {
+    try {
+     const dataArray = data.split('data:').filter((c)=>c.trim().length > 1)
 
-
-
-async function listenToNetWork(page:Page) {
-  const client = await page.target().createCDPSession();
-  await client.send('Network.enable');
-  const SSE_URL  = "https://chat.qwen.ai/api/v2/chat/completions"
- // Listen for new responses
-  client.on('Network.responseReceived', (params) => {
-    const { response } = params;
-    if (response.mimeType === 'text/event-stream') {
-      console.log('SSE stream detected at:', response.url);
+     dataArray.forEach((chunkData)=>{
+   const chunk: QwenResponseChunk = JSON.parse(chunkData.trimStart());
+      if (chunk.choices) {
+        for (const choice of chunk.choices) {
+          if (choice.delta.phase === "answer") {
+            const content = choice.delta.content;
+            const status = choice.delta.status; //"typing" //""finished""
+            onChunk(content, status, chunk.response_id);
+          }
+        }
+      }
+     })
+   
+    } catch (error) {
+      console.error(error, "\n cause:", data,'--------------->');
     }
   });
+  page.evaluate(() => {
+    const originalFetch = window.fetch;
 
-   // Listen for incoming SSE chunks
-  client.on('Network.dataReceived', async (params) => {
-    if (params.requestId) {
-    const body = await  client.send('Network.getResponseBody', { requestId: params.requestId })
-    body.body
-  }})
+    window.fetch = async (...args) => {
+      const res = await originalFetch(...args);
 
+      const ct = res.headers.get("content-type") || "";
+
+      if (ct.includes("text/event-stream") && res.body) {
+        // Split the stream into two identical streams
+        const [streamForYou, streamForPage] = res.body.tee();
+
+        // You consume one
+        const reader = streamForYou.getReader();
+        const decoder = new TextDecoder();
+
+        (async () => {
+          while (true) {
+            const { value, done } = await reader.read();
+            if (done) break;
+            const chunkString = decoder.decode(value, { stream: true });
+            window.onChunkResponse(chunkString);
+
+            console.log("SSE chunk:", decoder.decode(value, { stream: true }));
+          }
+        })();
+
+        // Page receives the other untouched stream
+        return new Response(streamForPage, {
+          status: res.status,
+          statusText: res.statusText,
+          headers: res.headers,
+        });
+      }
+
+      return res;
+    };
+  });
 }
 

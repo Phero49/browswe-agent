@@ -3,6 +3,7 @@ import { pasteBlobToElement, toBase64 } from "./utils";
 import fs from "fs/promises";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+
 export async function capturePageContentAsPdf(page: Page) {
   const pageAsPdf = await page.pdf({ displayHeaderFooter: false });
   return pageAsPdf;

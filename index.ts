@@ -7,6 +7,7 @@ import { connectToBrowser } from "./src/connect-to-chrome";
 import type { Browser, Page } from "puppeteer-core";
 import {
   attachControlPanels,
+  listenToNetWork,
   openControls,
   pasteBlobToElement,
 } from "./src/utils/utils";
@@ -41,6 +42,10 @@ let aiPage: Page;
 let chromeConnected = false;
 let chromeLaunched = false;
 let promptLoaded = false;
+const responses = {
+  watching: false,
+  messages: [],
+};
 
 async function chromeIsConnected() {
   try {
@@ -121,6 +126,9 @@ type InstructionPayload = {
   search: boolean;
   mode: "assistant" | "agent";
 };
+
+let messageResponses:Record<string,string> = {} 
+
 commands.runSocketEvents(
   "message-instruction",
   async (payload: MessagePayload, ws) => {
@@ -137,8 +145,6 @@ commands.runSocketEvents(
         await newPage.waitForSelector("textarea");
       }
     }
-
-
 
     if (!promptLoaded) {
       await pastePrompts(aiPage);
@@ -188,18 +194,33 @@ commands.runSocketEvents(
         );
         writeFileSync("./screenshot.webp", screenshot);
 
-      //  const uploadCompleted = await uploadFiles(aiPage, [file]);
-       // console.log("uploaded", uploadCompleted);
+        //  const uploadCompleted = await uploadFiles(aiPage, [file]);
+        // console.log("uploaded", uploadCompleted);
       }
     }
-
+    listenToNetWork(
+      aiPage,
+      (data: string, status: string, responseId: string) => {
+        let previousChunks =  messageResponses[responseId]
+       if (previousChunks == undefined) {
+        previousChunks = data
+        messageResponses[responseId] = previousChunks
+       } else{
+        previousChunks += data
+        messageResponses[responseId]=  previousChunks
+       }
+       console.log(previousChunks)
+        commands.sendMessage("messageChunk", {
+          data: previousChunks,
+          status: status,
+          responseId: responseId,
+        });
+      }
+    );
     await aiPage.focus("textarea");
     //    aiPage.keyboard.press("Enter");
-    await aiPage.evaluate(()=>{
-      document.body.setAttribute('active-ai-page','yes')
-    })
-commands.sendMessage("message-sent",{})
-
+    await aiPage.evaluate(() => {});
+    commands.sendMessage("message-sent", {});
   }
 );
 

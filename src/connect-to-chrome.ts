@@ -25,12 +25,3 @@ export async function connectToBrowser() {
   return browser 
 }
 
-
-async function getAiPage(browser:Browser,) {
-const page =  (await  browser.pages()).find((v)=>v.url().startsWith('https://chat.qwen.ai/'))
-if (page) {
-  
-}
-return page
-  
-}
