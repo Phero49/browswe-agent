@@ -1,4 +1,4 @@
-import type { Page } from "puppeteer-core";
+import type { HTTPRequest, Page, PageEventObject } from "puppeteer-core";
 import { pasteBlobToElement, toBase64 } from "./utils";
 import fs from "fs/promises";
 import { fileURLToPath } from "url";
@@ -19,47 +19,128 @@ declare global {
     pasteBlobToElement: (
       blob: File,
       el: HTMLElement | null,
-      fileName: string
+      fileName: string,
     ) => void;
   }
 }
 
 export async function typeText(page: Page, text: string) {
-  await page.type("textarea", text);
+  await page.evaluate(async (text: string) => {
+    const textarea = document.querySelector(".message-input-textarea");
+    if (textarea == null) {
+      throw new Error("textarea not found");
+    }
+    // textarea.focus();
+    await new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 100);
+    });
+
+    const dataTransfer = new DataTransfer();
+    dataTransfer.setData("text/plain", text);
+    const event = new ClipboardEvent("paste", {
+      clipboardData: dataTransfer,
+      bubbles: true,
+      cancelable: true,
+    });
+    textarea.dispatchEvent(event);
+  }, text);
 }
 // waits for upload completion and returns true if a new file appeared
-async function waitForUploadResult(
+
+export interface QwenFileTokenResponse {
+  success: boolean;
+  request_id: string;
+  data: Data;
+}
+
+export interface Data {
+  access_key_id: string;
+  access_key_secret: string;
+  security_token: string;
+  file_url: string;
+  file_path: string;
+  file_id: string;
+  bucketname: string;
+  region: string;
+  endpoint: string;
+}
+
+export async function waitForUploadResult(
   page: Page,
   previousCount: number,
-  timeoutMs = 60_000
+  timeoutMs: number = 1000000,
 ): Promise<boolean> {
-  return page.evaluate(
-    async ({ previousCount, timeoutMs }) => {
-      const start = Date.now();
+  const client = await page.target().createCDPSession();
+  await client.send("Network.enable");
 
-      return await new Promise<boolean>((resolve) => {
-        const interval = setInterval(() => {
-          const spinner = document.querySelector(".vision-spinner");
-          const currentCount =
-            document.querySelectorAll("file-card-list").length;
+  const files: Record<string, QwenFileTokenResponse> = {};
+  const completed: string[] = [];
 
-          // spinner gone → upload finished
-          if (!spinner) {
-            clearInterval(interval);
-            resolve(currentCount > previousCount);
-            return;
-          }
+  let cleanupDone = false;
+  let responseListener: (params: any) => void;
+  const cleanup = () => {
+    if (cleanupDone) return;
+    cleanupDone = true;
+    console.log("completed------->");
+    client.off("Network.responseReceived", responseListener);
+    client.detach().catch(() => {});
+  };
 
-          // timeout → fail hard
-          if (Date.now() - start > timeoutMs) {
-            clearInterval(interval);
-            resolve(false);
-          }
-        }, 500);
-      });
-    },
-    { previousCount, timeoutMs }
-  );
+  return await new Promise<boolean>(async (resolve, reject) => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (timeoutMs > 0) {
+      timeoutId = setTimeout(() => {
+        console.log(`Timeout after ${timeoutMs}ms`);
+        cleanup();
+        resolve(false);
+      }, timeoutMs);
+    }
+
+    responseListener = async (params: any) => {
+      const url = params.response.url;
+      const status = params.response.status;
+      const reponse = params.response;
+
+      if (reponse) {
+        const path = new URL(url).pathname;
+        if (
+          reponse.mimeType == "image/png" &&
+          reponse.headers["Content-Disposition"] &&
+          url === files[path]
+        ) {
+          cleanup();
+
+          resolve(true);
+        }
+      }
+
+      if (url.includes("getstsToken") && status === 200) {
+        try {
+          const getResponseBody = await client.send("Network.getResponseBody", {
+            requestId: params.requestId,
+          });
+
+          const response: QwenFileTokenResponse = JSON.parse(
+            getResponseBody.body,
+          );
+          const filePath = response.data.file_path;
+          files[filePath] = response;
+          console.log(url == response.data.file_url);
+          console.log(`Tracking upload for: ${filePath}`);
+        } catch (error) {
+          console.error("Error:", error);
+          cleanup();
+          if (timeoutId) clearTimeout(timeoutId);
+          resolve(false);
+        }
+      }
+    };
+
+    client.on("Network.responseReceived", responseListener);
+  });
 }
 
 // return true if upload succeeded
@@ -114,14 +195,10 @@ export async function uploadFiles(page: Page, files: File[]) {
 
   const parsedFiles: PassableData[] = [];
 
-  const previousUploadCount = await page.evaluate(() => {
-    return document.querySelectorAll("file-card-list").length;
-  });
-
   // Node side: extract passable data
   for (const f of files) {
-    const data =  await f.arrayBuffer()
-    
+    const data = await f.arrayBuffer();
+
     const base64Image = Buffer.from(data).toBase64();
     parsedFiles.push({
       file: base64Image, // ArrayBuffer survives the boundary
@@ -152,6 +229,7 @@ export async function uploadFiles(page: Page, files: File[]) {
     }
   }, parsedFiles);
 
-  const uploadSucceeded = await waitForUploadResult(page, previousUploadCount);
-  return uploadSucceeded;
+  //const uploadSucceeded = await waitForUploadResult(page, files.length);
+  //console.log("uploaded", uploadSucceeded);
+  return true;
 }

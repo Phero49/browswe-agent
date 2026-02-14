@@ -1,301 +1,341 @@
-import { WebSocketServer } from "ws";
-import { createServer } from "http";
 import express from "express";
-import { launchChromeWithProfile } from "./src/md/cmd/commandList";
-import { runCommand, useCommand } from "./src/md/cmd/commandsRegister";
-import { connectToBrowser } from "./src/connect-to-chrome";
+import { createServer } from "http";
+import { writeFileSync } from "fs";
 import type { Browser, Page } from "puppeteer-core";
-import {
-  attachControlPanels,
-  listenToNetWork,
-  openControls,
-  pasteBlobToElement,
-} from "./src/utils/utils";
-import { pastePrompts, typeText, uploadFiles } from "./src/utils/domutils";
-import type { MessagePayload, OpenedTabs } from "./types";
-import { getControlCss } from "./src/utils/controls";
-import { text } from "stream/consumers";
-import { writeFile, writeFileSync } from "fs";
 
+import { launchChromeWithProfile } from "./src/md/cmd/commandList";
+import { connectToBrowser } from "./src/connect-to-chrome";
+import { listenToNetWork } from "./src/utils/utils";
+import { typeText, uploadFiles } from "./src/utils/domutils";
+import { getControlCss } from "./src/utils/controls";
+import type { MessagePayload, TaskDefinition } from "./types";
+import { BROWSER, runSkill, uploadSkills } from "./src/utils/skils";
+
+// --- Configuration & Constants ---
+const PORT = process.env.PORT || 8080;
+const AI_BASE_URL = "https://chat.qwen.ai";
+
+// --- Application State ---
 const app = express();
 const server = createServer(app);
-const wss = new WebSocketServer({
-  server,
-  // Add these for debugging:
-  clientTracking: true, // Track all connected clients
-});
-
-// 2. Log ANY server events
-wss.on("listening", () => {
-  console.log("✅ WebSocket Server is LISTENING on port 8080");
-  console.log(`🌐 Connect via: ws://localhost:8080`);
-});
-
-wss.on("error", (error) => {
-  console.error("❌ WebSocket Server ERROR:", error);
-});
 
 let browser: Browser;
-let tabs: Record<string, Page> = {};
-let isProcessingMessage = false;
 let aiPage: Page;
-let chromeConnected = false;
 let chromeLaunched = false;
-let promptLoaded = false;
-const responses = {
-  watching: false,
-  messages: [],
-};
+let chromeConnected = false;
 
-async function chromeIsConnected() {
+// --- Helper Functions ---
+
+/**
+ * Ensures Chrome is launched and connected.
+ */
+async function ensureChromeConnection() {
   try {
     if (!chromeLaunched) {
-      const launched = await launchChromeWithProfile();
+      await launchChromeWithProfile();
+      chromeLaunched = true;
     }
-
     if (!chromeConnected) {
       browser = await connectToBrowser();
+      chromeConnected = true;
     }
     return true;
   } catch (error) {
-    console.log(error);
+    console.error("❌ Chrome Connection Error:", error);
     return false;
   }
 }
 
-const commands = useCommand();
-commands.beforeNext = chromeIsConnected;
-commands.runSocketEvents("launch-chrome", async (payload, ws) => {
+// --- Browser Actions ---
+
+async function launchChromeAction() {
+  const launched = await launchChromeWithProfile();
+  if (!launched) return;
+
+  chromeLaunched = true;
+  browser = await connectToBrowser();
+  chromeConnected = true;
+  console.log("✅ Connected to browser");
+
+  const pages = await browser.pages();
+  BROWSER.instance = browser;
+  BROWSER.isReady = true;
+  let qwenPage = pages.find((p) => p.url().startsWith(AI_BASE_URL));
+
+  if (qwenPage) {
+    aiPage = qwenPage;
+  } else {
+    aiPage = await browser.newPage();
+    await aiPage.goto(`${AI_BASE_URL}/`);
+  }
+  console.log("🤖 AI Page ready");
+}
+
+// --- Express Middleware & Routes ---
+
+app.use(express.json());
+
+// CORS Middleware
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") return res.sendStatus(200);
+  next();
+});
+
+/**
+ * Actions API - Native REST endpoints with Direct Response Streaming
+ */
+
+app.post("/action/launch-chrome", async (req, res) => {
   try {
-    const launched = await launchChromeWithProfile();
-    if (launched) {
-      commands.sendMessage("launch-chrome", { success: true });
-      chromeLaunched = true;
-
-      try {
-        browser = await connectToBrowser();
-        commands.sendMessage("connect-to-browser", {
-          success: true,
-        });
-        chromeConnected = true;
-        if (!aiPage) {
-          const firstPage = await browser.newPage();
-          await firstPage.goto("https://chat.qwen.ai/");
-          aiPage = firstPage;
-        }
-      } catch (error) {
-        console.log(error);
-        commands.sendMessage("connect-to-browser", {
-          success: false,
-          error: error,
-        });
-      }
-
-      return;
-    }
-  } catch (error) {
-    console.log(error);
-    commands.sendMessage("launch-chrome", { success: false });
+    await launchChromeAction();
+    res.json({ success: true });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
   }
 });
 
-commands.runSocketEvents("open-controls", (payload, ws) => {
-  const activeTab = payload.index;
-  if (activeTab) {
-    const tab = tabs[activeTab];
-    if (tab) {
-      openControls(tab, activeTab);
-    }
+app.post("/action/get-css", async (req, res) => {
+  try {
+    await ensureChromeConnection();
+    const css = await getControlCss();
+    res.json({ success: true, css });
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
   }
-
-  commands.sendMessage("control-opened", "");
 });
 
-commands.runSocketEvents("tabs", (payload: OpenedTabs) => {});
+app.post("/action/message-instruction", async (req, res) => {
+  let cleanup: (() => void) | undefined;
+  let fullResponse = "";
 
-commands.runSocketEvents("get-css", async () => {
-  const css = await getControlCss();
-  commands.sendMessage("get-css", css);
-});
+  try {
+    await ensureChromeConnection();
+    const payload: MessagePayload = req.body;
 
-const aiBaseUrl = "https://chat.qwen.ai";
-
-type InstructionPayload = {
-  thinking: boolean;
-  message: string;
-  search: boolean;
-  mode: "assistant" | "agent";
-};
-
-let messageResponses:Record<string,string> = {} 
-
-commands.runSocketEvents(
-  "message-instruction",
-  async (payload: MessagePayload, ws) => {
-    if (aiPage == undefined) {
-      const qwenPage = (await browser.pages()).find((p) =>
-        p.url().startsWith(aiBaseUrl)
-      );
-      if (qwenPage) {
-        aiPage = qwenPage;
-      } else {
-        const newPage = await browser.newPage();
-        await newPage.goto("https://chat.qwen.ai/");
-        aiPage = newPage;
-        await newPage.waitForSelector("textarea");
-      }
-    }
-
-    if (!promptLoaded) {
-      await pastePrompts(aiPage);
-      promptLoaded = true;
-    }
-
-    await typeText(aiPage, payload.message);
-    if (payload.assistantMode) {
+    if (!aiPage || aiPage.isClosed()) {
       const pages = await browser.pages();
-      let target: Page | undefined;
+      aiPage =
+        pages.find((p) => p.url().startsWith(AI_BASE_URL) && !p.isClosed()) ||
+        (await browser.newPage());
+      if (!aiPage.url().startsWith(AI_BASE_URL)) {
+        await aiPage.goto(`${AI_BASE_URL}/`);
+        await aiPage.waitForSelector("textarea");
+      }
+    }
 
-      for (const p of pages) {
-        const matches = await p.evaluate((id: string) => {
-          return document.body.getAttribute("tab-id") === id;
-        }, payload.tabId);
+    const uploadedSkills = await aiPage.evaluate(() => {
+      if (window.uploadedSkills) {
+        return true;
+      }
+      const checkSkillMD = document.querySelectorAll(".fileitem-btn");
 
-        if (matches) {
-          target = p;
-          break;
-        }
+      const isSkillsUploaded = Array.from(checkSkillMD).find((v) =>
+        v.textContent.toLowerCase().includes("skills.md"),
+      );
+
+      if (isSkillsUploaded) {
+        return true;
       }
 
-      if (target !== undefined) {
-        await target.evaluate(() => {
-          const host =
-            document.querySelector<HTMLDivElement>("#agent-control-dom");
-          if (host) host.style.display = "none";
-        });
+      return false;
+    });
+    if (!uploadedSkills) {
+      const skills = uploadSkills();
+      await uploadFiles(aiPage, [
+        new File([skills], "skills.md", { type: "text/markdown" }),
+      ]);
+      aiPage.evaluate(() => {
+        window.uploadedSkills = true;
+      });
+    }
 
-        const screenshot = await target.screenshot({
-          captureBeyondViewport: false,
-          type: "webp",
-        });
+    // Set headers for Response Streaming (SSE over POST)
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+    res.flushHeaders();
 
-        await target.evaluate(() => {
-          const host =
-            document.querySelector<HTMLDivElement>("#agent-control-dom");
-          if (host) host.removeAttribute("style");
-        });
+    // Monitor for AI response and pipe CONCATENATED response directly
 
-        const file = new File(
-          [new Uint8Array(screenshot)],
-          (await target.title()) + ".webp",
-          {
-            type: "image/webp",
+    async function talkToModel(payload: MessagePayload) {
+      cleanup = await listenToNetWork(
+        aiPage,
+        async (data, status, responseId) => {
+          fullResponse += data;
+          if (fullResponse.startsWith("=>execute-local")) {
+            if (status == "finished") {
+              function extractCodeBlock(md: string): string | null {
+                const match = md.match(/```[\w-]*\n?([\s\S]*?)```/);
+                return match?.[1]?.trim() ?? null;
+              }
+
+              const code = extractCodeBlock(fullResponse);
+              if (code) {
+                const parsedData = JSON.parse(code) as TaskDefinition;
+                const results = await runSkill(parsedData);
+                if (results.returnResponseToMode) {
+                  payload.message = `Here is the result of the prevous steps: ${JSON.stringify(results.output)}`;
+                  await talkToModel(payload);
+                  console.log("return this to ai ");
+                } else {
+                  const chunk = JSON.stringify({
+                    data:
+                      parsedData.userMessage +
+                      `\n  \`\`\` json ${JSON.stringify(results.output)})}\`\`\``,
+                    status,
+                    responseId,
+                  });
+                  console.log(results);
+
+                  res.write(`data: ${chunk}\n\n`);
+                  if (cleanup) cleanup();
+                  res.end();
+                }
+              }
+            }
+          } else {
+            const chunk = JSON.stringify({
+              data: fullResponse,
+              status,
+              responseId,
+            });
+
+            res.write(`data: ${chunk}\n\n`);
+
+            if (status === "finished") {
+              if (cleanup) cleanup();
+              res.end();
+            }
           }
-        );
-        writeFileSync("./screenshot.webp", screenshot);
+        },
+      );
 
-        //  const uploadCompleted = await uploadFiles(aiPage, [file]);
-        // console.log("uploaded", uploadCompleted);
-      }
-    }
-    listenToNetWork(
-      aiPage,
-      (data: string, status: string, responseId: string) => {
-        let previousChunks =  messageResponses[responseId]
-       if (previousChunks == undefined) {
-        previousChunks = data
-        messageResponses[responseId] = previousChunks
-       } else{
-        previousChunks += data
-        messageResponses[responseId]=  previousChunks
-       }
-       console.log(previousChunks)
-        commands.sendMessage("messageChunk", {
-          data: previousChunks,
-          status: status,
-          responseId: responseId,
-        });
-      }
-    );
-    await aiPage.focus("textarea");
-    //    aiPage.keyboard.press("Enter");
-    await aiPage.evaluate(() => {});
-    commands.sendMessage("message-sent", {});
-  }
-);
+      req.on("close", () => {
+        if (cleanup) cleanup();
+      });
 
-let chatUrl: string | null = null;
-commands.runSocketEvents(
-  "message",
-  async (payload: {
-    message: string;
-    agentMode: boolean;
-    captureScreen: boolean;
-  }) => {
-    if (aiPage) {
-      if (chatUrl == null) {
-        const chatId = aiPage.url().split("/").at(-1);
-        if (chatId != undefined && chatId.length >= 10) {
-          chatUrl = aiPage.url();
+      await typeText(aiPage, payload.message);
+      // Assistant mode screenshot logic
+      if (payload.modes === "assistant" && payload.tabId) {
+        const pages = await browser.pages();
+        let target: Page | undefined;
+        for (const p of pages) {
+          if (p.isClosed()) continue;
+          const isTarget = await p.evaluate(
+            (id) => document.body.getAttribute("tab-id") === id,
+            payload.tabId,
+          );
+          if (isTarget) {
+            target = p;
+            break;
+          }
+        }
+
+        if (target) {
+          await target.evaluate(() => {
+            const host =
+              document.querySelector<HTMLDivElement>("#bex-app-iframe");
+            if (host) host.style.visibility = "hidden";
+          });
+          const screenshot = await target.screenshot({
+            type: "jpeg",
+            quality: 50,
+          });
+          await target.evaluate(() => {
+            const host =
+              document.querySelector<HTMLDivElement>("#bex-app-iframe");
+            if (host) host.style.visibility = "visible";
+          });
+          const title = (await target.title()).replace(/\s+/g, "-");
+          const file = new File([new Uint8Array(screenshot)], `${title}.png`, {
+            type: "image/png",
+          });
+          writeFileSync("./screenshot.png", Buffer.from(screenshot));
+          await uploadFiles(aiPage, [file]);
         }
       }
-      if (!promptLoaded) {
-        await pastePrompts(aiPage);
-        promptLoaded = true;
-      }
-      typeText(aiPage, payload.message);
+
+      // Press Enter
+      await aiPage.$eval(
+        ".message-input-textarea",
+        async (el, { mode, uploadedSkills }) => {
+          const event = new KeyboardEvent("keydown", {
+            key: "Enter",
+            code: "Enter",
+            keyCode: 13,
+            bubbles: true,
+            cancelable: true,
+          });
+
+          if (mode === "agent" || mode === "assistant" || !uploadedSkills) {
+            const interval = setInterval(() => {
+              if (el instanceof HTMLElement) el.dispatchEvent(event);
+            }, 3000);
+
+            const originalFetch = window.fetch;
+            window.fetch = async (...args) => {
+              const response = await originalFetch(...args);
+              if (args[0].toString().includes("/chat/completions")) {
+                clearInterval(interval);
+              }
+              return response;
+            };
+          } else {
+            if (el instanceof HTMLElement) el.dispatchEvent(event);
+          }
+        },
+        {
+          mode: payload.modes,
+          uploadedSkills: uploadedSkills,
+        },
+      );
     }
 
-    console.log(payload);
+    talkToModel(payload);
+  } catch (err: any) {
+    console.error("❌ Action Error:", err);
+    if (cleanup) cleanup();
+    if (!res.writableEnded) {
+      res.write(`data: ${JSON.stringify({ error: err.message })}\n\n`);
+      res.end();
+    }
   }
-);
-
-// 3. Enhanced connection logging
-wss.on("connection", (ws, request) => {
-  console.log("🎉 NEW WebSocket Connection Established!");
-  console.log(`📊 Client IP: ${request.socket.remoteAddress}`);
-  console.log(`🔗 Total connections: ${wss.clients.size}`);
-  commands.initWebSocket(ws);
-
-  ws.on("close", () => {
-    console.log("🔌 Connection closed");
-    console.log(`📊 Remaining connections: ${wss.clients.size}`);
-  });
-
-  ws.on("error", (error) => {
-    console.error("⚠️  WebSocket error:", error);
-  });
 });
 
-// 4. HTTP endpoint to check server status
+// --- System Status ---
+
 app.get("/status", (req, res) => {
   res.json({
     status: "running",
-    connections: wss.clients.size,
+    chrome: { launched: chromeLaunched, connected: chromeConnected },
     uptime: process.uptime(),
-    timestamp: new Date().toISOString(),
   });
 });
 
 app.get("/", (req, res) => {
   res.send(`
-   socket is running
+    <html>
+      <body style="font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #0f172a; color: white;">
+        <div style="text-align: center; padding: 2rem; border-radius: 1rem; background: #1e293b; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+          <h1 style="color: #38bdf8;">Agent API Server</h1>
+          <p>Status: <span style="color: #4ade80;">Online</span></p>
+        </div>
+      </body>
+    </html>
   `);
 });
 
-// 5. Start the server
-const PORT = process.env.PORT || 8080;
+// --- Server Lifecycle ---
+
 server.listen(PORT, () => {
-  console.log(`🚀 HTTP Server started on http://localhost:${PORT}`);
-  console.log(`📡 WebSocket available at ws://localhost:${PORT}`);
+  console.log(`🚀 Server listening on http://localhost:${PORT}`);
+  launchChromeAction();
 });
 
-// 6. Graceful shutdown
 process.on("SIGINT", () => {
-  console.log("\n👋 Shutting down server...");
-  wss.clients.forEach((client) => client.close());
-  server.close(() => {
-    console.log("✅ Server closed");
-    process.exit(0);
-  });
+  console.log("\n👋 Shutting down...");
+  server.close(() => process.exit(0));
 });

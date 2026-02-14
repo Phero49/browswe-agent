@@ -6,7 +6,7 @@ import { json } from "express";
 import type { QwenResponseChunk } from "../../types";
 export async function processBody(body: ElementHandle<Element>) {
   const clickableElements = await body.$$(
-    "button, a[href], [role=button], [onclick], input, select, textarea, label"
+    "button, a[href], [role=button], [onclick], input, select, textarea, label",
   );
 
   const actions = {} as Record<
@@ -141,72 +141,6 @@ export async function observeChat(element: Element, delay = 1000) {
   console.log("conde not found");
 }
 
-export async function attachControlPanels(
-  page: Page,
-  index: number
-): Promise<void> {
-  const iframe = `<iframe src="" width="100",height="100" ></iframe>`;
-  page.on("framenavigated", (frame) => {
-    const page = frame.page();
-    if (page) {
-      addControls(page);
-    }
-
-    console.log();
-  });
-
-  function addControls(page: Page) {
-    page.$eval(
-      "body",
-      (el, index: number) => {
-        const controls = el.querySelector("#control-panels");
-        if (controls != null) {
-          return;
-        }
-        const div = document.createElement("div");
-        div.setAttribute("tab-index", index.toString());
-        div.id = "control-panels";
-        div.style = `
-  position: fixed;
-  z-index: 99999;
-  margin: 20px;padding:20px;
- bottom:4%;right:3%;`;
-        div.style.margin = "20px";
-        const iframe = document.createElement("iframe");
-        iframe.frameBorder = "0px";
-        iframe.style = "height:100px;position:relative;border:0px sold;";
-        iframe.src = `http://localhost:33931/?tab-index=${index}`;
-        iframe.style = "width:50px;height:50px;background:transparent";
-
-        div.appendChild(iframe);
-        // //const iframe =  new DOMParser().parseFromString( payload,'text/html')
-
-        el.appendChild(div);
-
-        // div2.outerHTML = payload
-      },
-      index
-    );
-  }
-  addControls(page);
-}
-
-export function openControls(page: Page, index: number) {
-  page.$eval(
-    "body",
-    (el, index) => {
-      const iframe = el
-        .querySelector("#control-panels")
-        ?.querySelector("iframe");
-      if (iframe) {
-        const height = window.innerHeight * 0.8;
-        iframe.style = `width:300px;height:${height}px;background:transparent`;
-      }
-    },
-    index
-  );
-}
-
 export function toBase64(file: File | Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -230,44 +164,76 @@ export function toBase64(file: File | Blob): Promise<string> {
   });
 }
 
+import { EventEmitter } from "events";
+
+// Global emitter to handle chunks across different parts of the app
+const networkEmitter = new EventEmitter();
+const exposedPages = new Set<string>();
+
 export async function listenToNetWork(
   page: Page,
-  onChunk: (data: string, status: string, responseId: string) => void
+  onChunk: (data: string, status: string, responseId: string) => void,
 ) {
-  page.exposeFunction("onChunkResponse", (data: string) => {
+  const pageId = page.mainFrame()._id;
+
+  // 1. Subscribe the new callback to the emitter
+  // Since we want this specific call to get chunks, we use a listener
+  const handler = (data: string, status: string, responseId: string) => {
+    onChunk(data, status, responseId);
+  };
+
+  networkEmitter.on("chunk", handler);
+
+  // 2. Only expose the function once per page
+  if (!exposedPages.has(pageId)) {
+    exposedPages.add(pageId);
+
+    // In case the page is closed, cleanup
+    page.on("close", () => exposedPages.delete(pageId));
+
     try {
-     const dataArray = data.split('data:').filter((c)=>c.trim().length > 1)
+      await page.exposeFunction("onChunkResponse", (data: string) => {
+        try {
+          const dataArray = data
+            .split("data:")
+            .map((c) => c.trim())
+            .filter((c) => c.length > 0);
 
-     dataArray.forEach((chunkData)=>{
-   const chunk: QwenResponseChunk = JSON.parse(chunkData.trimStart());
-      if (chunk.choices) {
-        for (const choice of chunk.choices) {
-          if (choice.delta.phase === "answer") {
-            const content = choice.delta.content;
-            const status = choice.delta.status; //"typing" //""finished""
-            onChunk(content, status, chunk.response_id);
-          }
+          dataArray.forEach((chunkData) => {
+            const chunk = JSON.parse(chunkData);
+            if (!chunk.choices) return;
+
+            for (const choice of chunk.choices) {
+              if (choice.delta.phase !== "answer") continue;
+              const id = chunk.response_id;
+              const content = choice.delta.content || "";
+              const status = choice.delta.status;
+
+              // Emit to all active subscribers
+              networkEmitter.emit("chunk", content, status, id);
+            }
+          });
+        } catch (err) {
+          console.error("Chunk parse error:", err);
         }
-      }
-     })
-   
-    } catch (error) {
-      console.error(error, "\n cause:", data,'--------------->');
+      });
+    } catch (e) {
+      // Function might already be exposed if page was reused in a way Set didn't catch
     }
-  });
-  page.evaluate(() => {
-    const originalFetch = window.fetch;
+  }
 
+  // 3. Inject the interceptor (idempotent)
+  await page.evaluate(() => {
+    if ((window as any)._fetchIntercepted) return;
+    (window as any)._fetchIntercepted = true;
+
+    const originalFetch = window.fetch;
     window.fetch = async (...args) => {
       const res = await originalFetch(...args);
-
       const ct = res.headers.get("content-type") || "";
 
       if (ct.includes("text/event-stream") && res.body) {
-        // Split the stream into two identical streams
         const [streamForYou, streamForPage] = res.body.tee();
-
-        // You consume one
         const reader = streamForYou.getReader();
         const decoder = new TextDecoder();
 
@@ -276,22 +242,23 @@ export async function listenToNetWork(
             const { value, done } = await reader.read();
             if (done) break;
             const chunkString = decoder.decode(value, { stream: true });
-            window.onChunkResponse(chunkString);
-
-            console.log("SSE chunk:", decoder.decode(value, { stream: true }));
+            if ((window as any).onChunkResponse) {
+              (window as any).onChunkResponse(chunkString);
+            }
           }
         })();
-
-        // Page receives the other untouched stream
         return new Response(streamForPage, {
           status: res.status,
           statusText: res.statusText,
           headers: res.headers,
         });
       }
-
       return res;
     };
   });
-}
 
+  // Return a cleanup function so the caller can stop listening
+  return () => {
+    networkEmitter.off("chunk", handler);
+  };
+}
